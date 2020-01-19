@@ -11,7 +11,7 @@ using NetMQ.Monitoring;
 using NetMQ.Sockets;
 using Serilog;
 
-namespace Libplanet.State.Explorer
+namespace Libplanet.Extension.Monitoring
 {
     public class Agent<T>
         where T : IAction, new()
