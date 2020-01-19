@@ -31,7 +31,7 @@ namespace Libplanet.Extension.Monitoring.Messages
         public GetState(NetMQFrame[] frames)
         {
             BlockHash = frames[0].ConvertToHashDigest<SHA256>();
-            Address = new Address(frames[0].ToByteArray());
+            Address = new Address(frames[1].ToByteArray());
         }
     }
 }

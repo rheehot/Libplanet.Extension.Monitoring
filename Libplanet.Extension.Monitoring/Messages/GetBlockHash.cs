@@ -11,7 +11,12 @@ namespace Libplanet.Extension.Monitoring.Messages
         protected override MessageType Type => MessageType.GetBlockHash;
 
         protected override IEnumerable<NetMQFrame> DataFrames
-            => ImmutableArray<NetMQFrame>.Empty;
+        {
+            get
+            {
+                yield return new NetMQFrame(NetworkOrderBitsConverter.GetBytes(BlockIndex));
+            }
+        }
 
         public GetBlockHash(long blockIndex)
         {

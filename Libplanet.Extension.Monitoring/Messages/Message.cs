@@ -49,6 +49,7 @@ namespace Libplanet.Extension.Monitoring.Messages
                 .Add(MessageType.GetBlock, typeof(GetBlock))
                 .Add(MessageType.Block, typeof(Block))
                 .Add(MessageType.GetBlockHash, typeof(GetBlockHash))
+                .Add(MessageType.BlockHash, typeof(BlockHash))
                 .Add(MessageType.GetState, typeof(GetState))
                 .Add(MessageType.State, typeof(State));
 
