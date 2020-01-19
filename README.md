@@ -1,2 +1,5 @@
-# libplanet-state-explorer
-explorer to query states, extended from libplanet-explorer
+# Libplanet.Extension.Monitoring
+
+Unofficial [Libplanet] extension to monitor actions.
+
+[Libplanet]: https://github.com/planetarium/libplanet
