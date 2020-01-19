@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Libplanet" Version="0.8.0-nightly.20191216" />
+      <PackageReference Include="Libplanet" Version="0.8.0-nightly.20200118" />
     </ItemGroup>
 
 </Project>
