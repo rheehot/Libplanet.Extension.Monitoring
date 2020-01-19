@@ -1,5 +1,6 @@
 ﻿using System;
 using Bencodex;
+using Bencodex.Types;
 using Libplanet.Action;
 using Libplanet.Blockchain;
 using Libplanet.Extension.Monitoring.Messages;
@@ -10,7 +11,7 @@ using NetMQ.Sockets;
 
 namespace Libplanet.Extension.Monitoring
 {
-    public class Agent<T>
+    public class Agent<T> : IDisposable
         where T : IAction, new()
     {
         private IStore _store;
@@ -61,7 +62,7 @@ namespace Libplanet.Extension.Monitoring
                 case GetState getState:
                     var state = _chain.GetState(
                         getState.Address,
-                        getState.BlockHash);
+                        getState.BlockHash) ?? default(Null);
                     var codec = new Codec();
                     reply = new State(codec.Encode(state));
                     break;

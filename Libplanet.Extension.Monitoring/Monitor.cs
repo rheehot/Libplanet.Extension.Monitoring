@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Security.Cryptography;
 using Bencodex.Types;
 using Libplanet.Action;
@@ -10,7 +11,7 @@ using NetMQ.Sockets;
 
 namespace Libplanet.Extension.Monitoring
 {
-    public class Monitor
+    public class Monitor : IDisposable
     {
         private readonly DnsEndPoint _serverEndPoint;
         private RequestSocket _requestSocket;
@@ -93,6 +94,11 @@ namespace Libplanet.Extension.Monitoring
             }
 
             public IValue PlainValue => _plainValue;
+        }
+
+        public void Dispose()
+        {
+            _requestSocket?.Dispose();
         }
     }
 }
