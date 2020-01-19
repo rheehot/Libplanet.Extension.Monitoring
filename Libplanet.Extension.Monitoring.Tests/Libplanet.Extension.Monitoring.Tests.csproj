@@ -279,7 +279,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgentTest.cs" />
+    <Compile Include="NetworkTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateExtension.cs" />
   </ItemGroup>
