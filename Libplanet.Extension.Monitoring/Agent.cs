@@ -8,6 +8,7 @@ using Libplanet.Net;
 using Libplanet.Store;
 using NetMQ;
 using NetMQ.Sockets;
+using Serilog;
 
 namespace Libplanet.Extension.Monitoring
 {
@@ -44,38 +45,45 @@ namespace Libplanet.Extension.Monitoring
 
         private void ProcessMessage(object sender, NetMQSocketEventArgs eventArgs)
         {
-            NetMQMessage raw = eventArgs.Socket.ReceiveMultipartMessage();
-            NetMQSocket client = eventArgs.Socket;
-            Message message = Message.Parse(raw);
-            Message reply = null;
-            switch (message)
+            try
             {
-                case GetBlock getBlock:
-                    var block = _chain[getBlock.BlockHash];
-                    var payload = block.Serialize();
-                    reply = new Block(payload);
-                    break;
-                case GetTip getTip:
-                    var tip = _chain.Tip;
-                    reply = new Tip(tip.Index, tip.Hash);
-                    break;
-                case GetState getState:
-                    var state = _chain.GetState(
-                        getState.Address,
-                        getState.BlockHash) ?? default(Null);
-                    var codec = new Codec();
-                    reply = new State(codec.Encode(state));
-                    break;
-                case GetBlockHash getBlockHash:
-                    var blockHash = _chain[getBlockHash.BlockIndex].Hash;
-                    reply = new BlockHash(blockHash);
-                    break;
-                default:
-                    throw new InvalidMessageException(
-                        $"Unhandled message [type: {message.GetType()}].");
-            }
+                NetMQMessage raw = eventArgs.Socket.ReceiveMultipartMessage();
+                NetMQSocket client = eventArgs.Socket;
+                Message message = Message.Parse(raw);
+                Message reply = null;
+                switch (message)
+                {
+                    case GetBlock getBlock:
+                        var block = _chain[getBlock.BlockHash];
+                        var payload = block.Serialize();
+                        reply = new Block(payload);
+                        break;
+                    case GetTip getTip:
+                        var tip = _chain.Tip;
+                        reply = new Tip(tip.Index, tip.Hash);
+                        break;
+                    case GetState getState:
+                        var state = _chain.GetState(
+                                        getState.Address,
+                                        getState.BlockHash) ?? default(Null);
+                        var codec = new Codec();
+                        reply = new State(codec.Encode(state));
+                        break;
+                    case GetBlockHash getBlockHash:
+                        var blockHash = _chain[getBlockHash.BlockIndex].Hash;
+                        reply = new BlockHash(blockHash);
+                        break;
+                    default:
+                        throw new InvalidMessageException(
+                            $"Unhandled message [type: {message.GetType()}].");
+                }
 
-            client.SendMultipartMessage(reply.ToNetMQMessage());
+                client.SendMultipartMessage(reply.ToNetMQMessage());
+            }
+            catch (Exception e)
+            {
+                Log.Error("Error occurred.", e);
+            }
         }
     }
 }
