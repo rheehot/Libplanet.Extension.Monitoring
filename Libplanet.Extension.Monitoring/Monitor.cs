@@ -14,7 +14,7 @@ namespace Libplanet.Extension.Monitoring
     public class Monitor : IDisposable
     {
         private readonly DnsEndPoint _serverEndPoint;
-        private RequestSocket _requestSocket;
+        private readonly RequestSocket _requestSocket;
 
         public Monitor(DnsEndPoint endPoint)
         {

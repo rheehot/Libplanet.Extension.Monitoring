@@ -15,8 +15,8 @@ namespace Libplanet.Extension.Monitoring
     public class Agent<T> : IDisposable
         where T : IAction, new()
     {
-        private IStore _store;
-        private BlockChain<T> _chain;
+        private readonly IStore _store;
+        private readonly BlockChain<T> _chain;
 
         private ResponseSocket _server;
         private NetMQPoller _poller;
