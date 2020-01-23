@@ -86,10 +86,12 @@ namespace Libplanet.Extension.Monitoring
 
             public void Render(IActionContext context, IAccountStateDelta nextStates)
             {
+                // Do nothing.
             }
 
             public void Unrender(IActionContext context, IAccountStateDelta nextStates)
             {
+                // Do nothing.
             }
 
             public IValue PlainValue => _plainValue;
