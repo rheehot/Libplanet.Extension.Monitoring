@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="Libplanet" Version="0.8.0-nightly.20200118" />
+      <PackageReference Include="SonarAnalyzer.CSharp" Version="8.2.0.14119" />
     </ItemGroup>
 
     <ItemGroup>
