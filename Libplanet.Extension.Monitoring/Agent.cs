@@ -12,7 +12,7 @@ using Serilog;
 
 namespace Libplanet.Extension.Monitoring
 {
-    public class Agent<T> : IDisposable
+    public sealed class Agent<T> : IDisposable
         where T : IAction, new()
     {
         private readonly IStore _store;
