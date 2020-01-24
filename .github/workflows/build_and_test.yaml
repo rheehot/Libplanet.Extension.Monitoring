@@ -1,0 +1,20 @@
+name: Build and Test
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: build and test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        dotnet: ['2.2.103']
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1.4.0
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+      # It assumed test will be executed successfully
+      # when the build was successful.
+      - name: test
+        run: dotnet test
