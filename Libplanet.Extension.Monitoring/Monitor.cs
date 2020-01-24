@@ -11,17 +11,16 @@ using NetMQ.Sockets;
 
 namespace Libplanet.Extension.Monitoring
 {
-    public class Monitor : IDisposable
+    public sealed class Monitor : IDisposable
     {
-        private readonly DnsEndPoint _serverEndPoint;
-        private RequestSocket _requestSocket;
+        private readonly RequestSocket _requestSocket;
 
         public Monitor(DnsEndPoint endPoint)
         {
-            _serverEndPoint = endPoint;
+            var serverEndPoint = endPoint;
 
-            var host = _serverEndPoint.Host;
-            var port = _serverEndPoint.Port;
+            var host = serverEndPoint.Host;
+            var port = serverEndPoint.Port;
             _requestSocket = new RequestSocket($">tcp://{host}:{port}");
         }
 
@@ -87,10 +86,12 @@ namespace Libplanet.Extension.Monitoring
 
             public void Render(IActionContext context, IAccountStateDelta nextStates)
             {
+                // Do nothing.
             }
 
             public void Unrender(IActionContext context, IAccountStateDelta nextStates)
             {
+                // Do nothing.
             }
 
             public IValue PlainValue => _plainValue;

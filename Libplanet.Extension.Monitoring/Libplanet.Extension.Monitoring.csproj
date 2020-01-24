@@ -1,11 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>netstandard2.0;netcoreapp2.1</TargetFrameworks>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <CodeAnalysisRuleSet>..\Libplanet.Extension.Monitoring.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Libplanet" Version="0.8.0-nightly.20200118" />
+      <PackageReference Include="SonarAnalyzer.CSharp" Version="8.2.0.14119" />
     </ItemGroup>
 
     <ItemGroup>

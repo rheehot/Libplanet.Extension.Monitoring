@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using NetMQ;
 
 namespace Libplanet.Extension.Monitoring.Messages

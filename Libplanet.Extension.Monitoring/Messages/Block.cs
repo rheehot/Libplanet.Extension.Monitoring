@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography;
 using NetMQ;
 
 namespace Libplanet.Extension.Monitoring.Messages
