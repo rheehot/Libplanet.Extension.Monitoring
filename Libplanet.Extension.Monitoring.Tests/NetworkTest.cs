@@ -77,7 +77,7 @@ namespace Libplanet.Extension.Monitoring.Tests
         public async Task GetBlock()
         {
             const int repeat = 20;
-            for (int i = 0; i < repeat; ++i)
+            for (int i = 1; i <= repeat; ++i)
             {
                 await _chain.MineBlock(_address);
                 var (_, tipHash) = _monitor.GetTip();
