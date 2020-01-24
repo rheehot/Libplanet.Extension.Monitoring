@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet
+        Name="Rules for Libplanet.Extension.Monitoring.Tests"
+        Description="Code analysis rules for Libplanet.Extension.Monitoring.Tests.csproj."
+        ToolsVersion="10.0">
+
+    <Rules AnalyzerId="SonarAnalyzer" RuleNamespace="SonarAnalyzer">
+        <!-- Complete the task associated to this 'TODO' comment. -->
+        <Rule Id="S1135" Action="None" />
+    </Rules>
+</RuleSet>

@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <CodeAnalysisRuleSet>..\Libplanet.Extension.Monitoring.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
