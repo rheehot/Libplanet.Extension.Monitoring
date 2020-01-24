@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 using Bencodex.Types;
 using Libplanet.Action;
@@ -8,20 +8,20 @@ using Libplanet.Blockchain;
 using Libplanet.Blockchain.Policies;
 using Libplanet.Crypto;
 using Libplanet.Store;
-using NetMQ.Sockets;
 using Xunit;
 
 namespace Libplanet.Extension.Monitoring.Tests
 {
-    public class NetworkTest : IDisposable
+    public sealed class NetworkTest : IDisposable
     {
-        private BlockChain<LevelUp> _chain;
-        private IStore _store;
+        private readonly BlockChain<LevelUp> _chain;
+        [SuppressMessage("ReSharper", "PrivateFieldCanBeConvertedToLocalVariable")]
+        private readonly IStore _store;
         private readonly PrivateKey _privateKey;
         private readonly Address _address;
 
-        private Agent<LevelUp> _agent;
-        private Monitor _monitor;
+        private readonly Agent<LevelUp> _agent;
+        private readonly Monitor _monitor;
 
         private const ushort Port = 30000;
         
@@ -45,7 +45,7 @@ namespace Libplanet.Extension.Monitoring.Tests
         }
 
         [Fact]
-        private async void GetTip()
+        private async Task GetTip()
         {
             const int repeat = 20;
             for (int i = 0; i < repeat; ++i)
@@ -58,7 +58,7 @@ namespace Libplanet.Extension.Monitoring.Tests
         }
 
         [Fact]
-        public async void GetState()
+        public async Task GetState()
         {
             const int repeat = 20;
             for (int i = 1; i < repeat; ++i)
@@ -74,7 +74,7 @@ namespace Libplanet.Extension.Monitoring.Tests
         }
         
         [Fact]
-        public async void GetBlock()
+        public async Task GetBlock()
         {
             const int repeat = 20;
             for (int i = 0; i < repeat; ++i)
@@ -87,7 +87,7 @@ namespace Libplanet.Extension.Monitoring.Tests
         }
 
         [Fact]
-        public async void GetBlockHash()
+        public async Task GetBlockHash()
         {
             const int repeat = 20;
             for (int i = 0; i < repeat; ++i)
@@ -106,6 +106,7 @@ namespace Libplanet.Extension.Monitoring.Tests
         {
             public void LoadPlainValue(IValue plainValue)
             {
+                // There is no value to store in the chain.
             }
 
             public IAccountStateDelta Execute(IActionContext context)
@@ -129,10 +130,12 @@ namespace Libplanet.Extension.Monitoring.Tests
 
             public void Render(IActionContext context, IAccountStateDelta nextStates)
             {
+                // Do nothing.
             }
 
             public void Unrender(IActionContext context, IAccountStateDelta nextStates)
             {
+                // Do nothing.
             }
 
             public IValue PlainValue => default(Null);
