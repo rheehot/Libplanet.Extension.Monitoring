@@ -1,0 +1,23 @@
+﻿name: Deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+      - name: Deploy NuGet
+        run: |
+          dotnet_args="-c Release -p:NoPackageAnalysis=true"
+          if [[ ! "$GITHUB_REF" =~ ^refs/tags/* ]]; then
+            project_suffix=dev.`date +%Y%m%d%H%M%`.${{ github.sha }}
+            dotnet_args="$dotnet_args --version-suffix $project_suffix"
+          fi
+          dotnet build $dotnet_args
+          dotnet pack  $dotnet_args
+          dotnet nuget push ./Libplanet.Extension.Monitoring/bin/Release/Libplanet.Extension.Monitoring.*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
