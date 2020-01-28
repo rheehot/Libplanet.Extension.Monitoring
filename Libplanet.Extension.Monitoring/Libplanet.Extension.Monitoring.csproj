@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netcoreapp2.1</TargetFrameworks>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <VersionPrefix>0.1.0</VersionPrefix>
         <CodeAnalysisRuleSet>..\Libplanet.Extension.Monitoring.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
