@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <PackageId>Libplanet.Extension.Monitoring</PackageId>
+        <Title>Libplanet.Extension.Monitoring</Title>
+        <Description>Unofficial Libplanet extension for monitoring.</Description>
+        <Authors>Moreal</Authors>
+        <RepositoryUrl>git://github.com/moreal/Libplanet.Extension.Monitoring.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
         <TargetFrameworks>netstandard2.0;netcoreapp2.1</TargetFrameworks>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <VersionPrefix>0.1.0</VersionPrefix>
