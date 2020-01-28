@@ -13,7 +13,7 @@ jobs:
         run: |
           dotnet_args="-c Release -p:NoPackageAnalysis=true"
           if [[ ! "$GITHUB_REF" =~ ^refs/tags/* ]]; then
-            project_suffix=dev.`date +%Y%m%d%H%M%`.${{ github.sha }}
+            project_suffix=dev.`date +%Y%m%d%H%M`.${{ github.sha }}
             dotnet_args="$dotnet_args --version-suffix $project_suffix"
           fi
           dotnet build $dotnet_args
