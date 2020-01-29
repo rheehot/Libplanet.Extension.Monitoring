@@ -5,6 +5,8 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RequireLicenseAcceptance>true</RequireLicenseAcceptance>
     <CodeAnalysisRuleSet>..\Libplanet.Extension.Monitoring.Tests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
